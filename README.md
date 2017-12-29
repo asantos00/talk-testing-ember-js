@@ -252,7 +252,12 @@ Mirage makes it easy to intercept and respond to requests. It is possible to cre
 
 TODO: https://github.com/rwjblue/rfcs/blob/42/text/0000-grand-testing-unification.md
 
+## Tips
 
+TODO
+- use `--serve` and /tests
+- use two way data binding to see component *inside work*
+- add test tags when needed to not use super complex and breakable selectors
 
 
 
