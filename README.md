@@ -187,10 +187,10 @@ The test itself doesn't say much, it is just a bunch of clicks that fills the wh
 - I'm sure I have not showed you none super innovative way of testing, nor any super test. I showed some examples but what I want you to take out of this talk is the confidence this tests can give us, I know, it is boring to write them, but trust me, it is way more boring to be always breaking things without noticing. 
 - I can't count how many times tests saved my code from bugs and `spa-search` is stil in the beggining, since rebases that apparently went well or just changing code to fix bugs and create others. And more, by writing tests you test things that sometimes are obvious but that you haven't noticed when you hand tested it. 
 - And last but not least, writing tests makes you write simpler components, simpler code. If you're doing too much setup to be able to test something, my guess is that what you are testing is too complicated, it might be better to subdivide it in smaller, simpler parts.
-- I want also to incentivize people to create tests for the bugs they find, it is not a common practice but raise your hand if you never had a bug that you already solve coming back to you.
+- I want also to incentivize people to create tests for the bugs they find, it is not enforced (yet) but raise your hand if you never had a bug that you already solved coming back to you.
 
 ## Mirage and faker.js
-It would be super boring, and less realiable to write tests in ember without some very well known tools. I'm going to mention some of the crucial helpers we use but I want to give full credit to `ember-cli-mirage` and `faker.js`.
+It would be super boring, and less reliable to write tests in ember without some very well known tools. I'm going to mention some of the crucial helpers we use but I want to give full credit to `ember-cli-mirage` and `faker.js`.
 
 For those who don't know, mirage is "client side server" as they say in their website. It just intercepts HTTP requests and answers them with generated responses with fake data and logic.
 
@@ -221,9 +221,32 @@ export default Factory.extend({
 });
 ```
 
+## Traits
+
 You can see the flexibility we can have from this, we are also able to create what mirage calls `traits`, that are variations of this factories. We can create per example an offer that has, according to parameters, a restriction for males or females, or a different price.
 
-We can also create a state of the app that is going to be used in Acceptance testing.
+TODO: trait example
+
+## Handlers
+
+```javascript
+  this.urlPrefix = config.searchHost;
+
+  this.get('/offers', (schema) => {
+    return {
+      type: 'offers',
+      data: schema.db.offers
+    };
+  });
+
+  this.put('/guests/:id/wish-list', () => {
+    return new Mirage.Response(204);
+  });
+
+  this.passthrough('https://a.tiles.mapbox.com/**');
+```
+
+Mirage makes it easy to intercept and respond to requests. It is possible to create logic to handle request parameters and respond according to it using its factories
 
 ## Test unification
 
