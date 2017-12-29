@@ -132,7 +132,7 @@ After that, it just triggers the events that simulate the drag. So, we trigger a
 
 There are some small implementation details you can see here, I'm getting the slider's bouding box so I know which coordinates to click, just to confirm that if I move the slider to 1/4 of its bar, the value will update to 1/4 of his range.
 
-I'm also using the `triggerEvent` helper, that I think is pretty intuitive, and I'm using `async` because all those calls to `triggerEvent` return a promise, and I just want to grant that we're running the first call before the second, that's what the await is for.
+I'm also using the `triggerEvent` helper, that I think is pretty intuitive, and I'm using `await` because all those calls to `triggerEvent` return a promise, and I just want to grant that we're running the first call before the second, that's what the await is for.
 
 It was more complicated right? We're not writing unit tests anymore, but we ca also see that now we're starting to have more confidence about the component, with a few tests like this, we can almost guarantee that the component works, right? We're getting there!
 
