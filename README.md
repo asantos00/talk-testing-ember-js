@@ -193,10 +193,38 @@ I'm using `await` because all those calls to `triggerEvent` return a promise,
 and I just want to grant that we're running the first call before the second,
 that's what the await is for.
 
-It was more complicated right? We're not writing unit tests anymore, but we ca
-also see that now we're starting to have more confidence about the component,
-with a few tests like this, we can almost guarantee that the component works,
-right? We're getting there!
+**Test - it calls the onChange action when the value changes**
+
+```javascript
+test("it calls the onChange action when slider value changes", async function(
+  assert
+) {
+  assert.expect(1);
+
+  this.setProperties({
+    budget: 20,
+    min: 0,
+    max: 40,
+    boundingBox: null,
+    onChange: value => assert.ok(value)
+  });
+
+  this.render(
+    hbs`{{budget-slider boundingBox=boundingBox onChange=onChange min=min max=max budget=budget}}`
+  );
+
+  await click(".budget-slider__slider__handle");
+});
+```
+
+Here we're testing one of the most commom use cases of integration tests, making
+sure our actons are called. It is as simple as clicking in the budget slider
+expecting our onChange handler to be called.
+
+It was (just a little bit) more complicated right? We're not writing unit tests
+anymore, but we ca also see that now we're starting to have more confidence
+about the component, with a few tests like this, we can almost guarantee that
+the component works, right? We're getting there!
 
 ## Acceptance tests
 
@@ -324,8 +352,6 @@ what mirage calls `traits`, that are variations of this factories. We can create
 per example an offer that has, according to parameters, a restriction for males
 or females, or a different price.
 
-TODO: trait example
-
 ## Handlers
 
 ```javascript
@@ -351,13 +377,27 @@ factories
 
 ## Test unification
 
-TODO:
-https://github.com/rwjblue/rfcs/blob/42/text/0000-grand-testing-unification.md
+I've been using some asynchronous helpers, both in `acceptance` and in
+`integration` tests, some of you might ask:
+
+> Why am I not using the test syntax that figures on the documentation?
+
+This is due to a proposal made by Robert Jackson, one of the main ember
+contributors (@rwjblue) to **unify all ember testing**. The link is in the notes
+but TLDR is that ember officaly was two very different syntax for testing
+`acceptance` and `integration`, that leads to some confusion, making it harder
+to understand and forcing developers to _change context_ while writing tests.
+
+This is why I've been writing tests using `click`, `triggerEvent` and all those
+helpers. This is also now a standard in Uniplaces' Ember codebase so it is worth
+checking out :).
 
 ## Tips
 
-TODO
-
+* when running multiple assertions, make sure you provide an assertion
+  description
+* pauseTest acceptance tests to develop in what state you want
+  (https://blog.embermap.com/my-ember-js-tdd-workflow-47847c6dbdfa)
 * use `--serve` and /tests
 * use two way data binding to see component _inside work_
 * add test tags when needed to not use super complex and breakable selectors
