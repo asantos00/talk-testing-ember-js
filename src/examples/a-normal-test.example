@@ -1,0 +1,5 @@
+test('it renders with the budget', function(assert) {
+  this.render(hbs`{{budget-slider min=100 max=600 budget=500}}`);
+
+  assert.ok(find('.budget-slider__input > input').value === '500', 'is has the budget');
+});
