@@ -1,0 +1,14 @@
+export default Factory.extend({
+  type: "offer",
+  id: () => faker.random.number({ max: MAX_OFFER_ID }),
+  attributes: {
+    accommodation_offer: {
+      id: () => faker.random.number({ max: MAX_OFFER_ID }),
+      version: 19,
+      titles: {
+        en_GB: () => faker.lorem.words(5),
+        de_DE: () => faker.lorem.words(5)
+      }
+    }
+  }
+});

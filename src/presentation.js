@@ -46,11 +46,6 @@ export default class Presentation extends React.Component {
           <Heading fit caps lineHeight={1} textColor="secondary">
             testing ember js
           </Heading>
-          <Appear>
-            <Heading margin="20 0 0 0" size={4} caps lineHeight={1} textColor="primary">
-              testing-ember-js.netlify.com
-            </Heading>
-          </Appear>
           <Notes>
             <p>
               <p>testing is core for us in the backend</p>
@@ -160,34 +155,188 @@ export default class Presentation extends React.Component {
             show me the code
           </Heading>
         </Slide>
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/a-normal-test.example')}
+          ranges={[
+            { 
+              loc: [0, 5],
+              title: "a normal test nowadays",
+            }
+          ]}
+        />
         <Slide transition={["zoom"]} bgColor="clear">
-          <CodeSlide 
-            lang="js"
-            transition={[]}
-            textSize={25}
-            code={require('./examples/a-normal-test.example')}
-            ranges={[
-              { 
-                loc: [0, 12],
-                title: "now vs later",
-              },
-              {
-                loc: [0, 5],
-                title: "now",
-              },
-              {
-                loc: [8, 11],
-                title: "now"
-              },
-              {
-                loc: [5, 6],
-                title: "later (after 1000ms passed)",
-              }
-            ]}
-          />
-          <Heading fit caps lineHeight={1} textColor="secondary">
-            show me the code
+          <Heading size={6} caps lineHeight={1} textColor="medium">
+            tools
           </Heading>
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            how can we improve?
+          </Heading>
+        </Slide>
+        <Slide transition={["zoom"]} bgColor="clear">
+          <Heading size={6} caps lineHeight={1} textColor="medium">
+            clearer and more objective syntax
+          </Heading>
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            qunit-dom
+          </Heading>
+        </Slide>
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/qunit-before-after.example')}
+          ranges={[
+            { 
+              loc: [0, 3],
+              title: "before",
+            },
+            { 
+              loc: [4, 6],
+              title: "after",
+            }
+          ]}
+        />
+        <Slide transition={["zoom"]} bgColor="clear">
+          <Heading size={6} caps lineHeight={1} textColor="medium">
+            abstract testing from the implementation
+          </Heading>
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            ember-cli-page-object
+          </Heading>
+        </Slide>
+        <Slide transition={["zoom"]} bgColor="clear">
+          <Heading size={4} lineHeight={2} textColor="darkMedium">
+            "Page objects are a classic example of encapsulation - they hide the details of the UI structure and widgetry from other components (the tests)"
+          </Heading>
+          <Heading size={6} lineHeight={1} textColor="medium">
+            Simon Stewart - creator of webdriver
+          </Heading>
+        </Slide>
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/ember-cli-page-object-before-after.example')}
+          ranges={[
+            { 
+              loc: [0, 13],
+              title: "before",
+            },
+            { 
+              loc: [14, 21],
+              title: "define page object",
+            },
+            { 
+              loc: [22, 27],
+              title: "after",
+            }
+          ]}
+        />
+        <Slide transition={["zoom"]} bgColor="clear">
+          <Heading size={6} caps lineHeight={1} textColor="medium">
+            grand-test-unification
+          </Heading>
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            ember-native-dom-helpers
+          </Heading>
+        </Slide>
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/ember-native-dom-helpers-before-after.example')}
+          ranges={[
+            { 
+              loc: [0, 1],
+              title: "acceptance test before",
+            },
+            { 
+              loc: [2, 3],
+              title: "acceptance test after",
+            },
+            { 
+              loc: [0, 3],
+              title: "vs",
+            },
+          ]}
+        />
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/ember-native-dom-helpers-before-after-integration.example')}
+          ranges={[
+            { 
+              loc: [0, 1],
+              title: "integration test before",
+            },
+            { 
+              loc: [2, 3],
+              title: "integration test after",
+            },
+          ]}
+        />
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/ember-native-dom-helpers-before-after-vs.example')}
+          ranges={[
+            { 
+              loc: [0, 3],
+              title: "today - acceptance and integration",
+            },
+          ]}
+        />
+        <Slide transition={["zoom"]} bgColor="clear">
+          <Heading size={6} caps lineHeight={1} textColor="medium">
+            mocking APIs in the client 
+          </Heading>
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            ember-cli-mirage
+          </Heading>
+        </Slide>
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/ember-cli-mirage-faker.example')}
+          ranges={[
+            { 
+              loc: [0, 3],
+              title: "mock data",
+            },
+            { 
+              loc: [3, 12],
+              title: "mock data",
+            },
+          ]}
+        />
+        <CodeSlide 
+          lang="js"
+          transition={[]}
+          textSize={25}
+          code={require('./examples/ember-cli-mirage-api.example')}
+          ranges={[
+            { 
+              loc: [0, 6],
+              title: "mock apis",
+            },
+          ]}
+        />
+        <Slide transition={["zoom"]} bgColor="clear">
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            tips and tricks
+          </Heading>
+          <Text margin="30px 0 0" textColor="medium" textSize={50}>
+            - use `assert.async()` to develop
+          </Text>
+          <Text margin="30px 0 0" textColor="medium" textSize={50}>
+            - use `--filter` and `/tests`
+          </Text>
         </Slide>
       </Deck>
     );

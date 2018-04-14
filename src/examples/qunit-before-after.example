@@ -1,0 +1,6 @@
+assert.ok(
+  find('.budget-slider__input > input').value, '100')
+);
+
+assert.dom('.budget-slider__input > input')
+  .hasValue('100');

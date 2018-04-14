@@ -1,0 +1,6 @@
+this.get("/offers", schema => {
+  return {
+    type: "offers",
+    data: schema.db.offers
+  };
+});

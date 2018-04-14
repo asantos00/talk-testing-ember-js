@@ -1,0 +1,3 @@
+this.$().find('.budget-slider__slider__handle')
+
+find('.budget-slider__slider__handle')

@@ -1,0 +1,28 @@
+await visit('/accommodation/lisbon');
+await click(this.selectors.openOnboardingButton);
+assert.ok(find('.uni-modal'), 'modal opens');
+await click('.start-onboarding-button');
+assert.equal(
+  find('.onboarding__body').attributes['test-step'].value.
+  'intro'
+)
+await click('.question__answer:first-child');
+assert.equal(
+  find('.onboarding__body').attributes['test-step'].value.
+  'occupation'
+)
+
+const onboardingPage = create({
+  visit: visitable('/accommodation/lisbon'),
+
+  openOnboarding: clickable('.filters__filter'),
+  skipIntro: clickable('.start-onboarding-button'),
+  chooseOccupationWork: clickable('.question__answer:first-child'),
+});
+
+onboardingPage
+  .visit()
+  .openOnboarding()
+  .skipIntro()
+  .chooseOccupationWork()
+
